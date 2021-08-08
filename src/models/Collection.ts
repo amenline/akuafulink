@@ -26,7 +26,7 @@ const CollectionSchema: Schema = new Schema(
       required: true,
     },
     measure: {
-      type: Schema.Types.ObjectId,
+      type: String,
     },
     stock: {
       type: Number,

@@ -7,6 +7,7 @@ export interface ICommodity extends mongoose.Document {
   measure?: string;
   stock?: number;
   pictures?: string[];
+  categories: string[];
   description: string;
   date?: Date;
 }
@@ -25,7 +26,7 @@ const CommoditySchema: Schema = new Schema(
       required: true,
     },
     measure: {
-      type: Schema.Types.ObjectId,
+      type: String,
     },
     stock: {
       type: Number,
@@ -33,6 +34,12 @@ const CommoditySchema: Schema = new Schema(
     pictures: {
       type: [String],
     },
+    categories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+      },
+    ],
     description: {
       type: String,
       required: true,
