@@ -1,14 +1,16 @@
 import mongoose, { Schema } from 'mongoose';
+import { ShopItemType } from '../Types';
 
 export interface ICommodity extends mongoose.Document {
   name: string;
   variety?: string[];
-  price: string;
+  price: number;
   measure?: string;
   stock?: number;
   pictures?: string[];
   categories: string[];
   description: string;
+  type: ShopItemType;
   date?: Date;
 }
 
@@ -22,7 +24,7 @@ const CommoditySchema: Schema = new Schema(
       type: [String],
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     measure: {
@@ -43,6 +45,11 @@ const CommoditySchema: Schema = new Schema(
     description: {
       type: String,
       required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+      default: ShopItemType.commodity,
     },
     date: {
       type: Date,

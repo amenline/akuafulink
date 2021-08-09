@@ -2,7 +2,9 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import { graphqlHTTP } from 'express-graphql';
-import { buildSchema } from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
+import schema from './graphql/schema';
+import resolvers from './graphql/resolvers';
 
 const app: Application = express();
 
@@ -20,8 +22,8 @@ app.use(express.json());
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: buildSchema(``),
-    rootValue: {},
+    schema: schema,
+    rootValue: resolvers,
     graphiql: true,
   })
 );

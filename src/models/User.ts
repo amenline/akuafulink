@@ -6,6 +6,8 @@ export interface IUser extends mongoose.Document {
   password: string;
   mobile: string;
   picture?: string;
+  cart?: string[];
+  shopped?: string[];
   date?: Date;
 }
 
@@ -31,6 +33,16 @@ const UserSchema: Schema = new Schema(
     picture: {
       type: String,
     },
+    cart: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+    ],
+    shopped: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+    ],
     date: {
       type: Date,
       default: Date.now,

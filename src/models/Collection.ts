@@ -1,13 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
+import { ShopItemType } from '../Types';
 
 export interface ICollection extends mongoose.Document {
   name: string;
   contents: string[];
-  price: string;
+  price: number;
   measure?: string;
   stock?: number;
   pictures?: string[];
   description: string;
+  type: ShopItemType;
   date?: Date;
 }
 
@@ -22,7 +24,7 @@ const CollectionSchema: Schema = new Schema(
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     measure: {
@@ -37,6 +39,11 @@ const CollectionSchema: Schema = new Schema(
     description: {
       type: String,
       required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+      default: ShopItemType.collection,
     },
     date: {
       type: Date,
