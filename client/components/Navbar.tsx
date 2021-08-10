@@ -18,7 +18,7 @@ export const NavItem: React.FC<Props> = ({
 }) => {
   return (
     <li
-      className={`p-2 m-1 border border-transparent rounded-md hover:border-primary-100 hover:border-solid transition-all ease-linear duration-200 nav-text font-medium ${extraClasses}`}
+      className={`p-2 m-1 border border-transparent rounded-lg hover:border-primary-100 hover:border-solid transition-all ease-linear duration-200 nav-text font-medium ${extraClasses}`}
     >
       <Link href={`/${link}`}>
         <a>{children}</a>

@@ -1,11 +1,9 @@
 import Footer from './Footer';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import Navbar from './Navbar';
 
-const name = 'Phace Media';
-export const siteTitle = 'Phace Media';
+const name = 'AkuafuLink';
+export const siteTitle = 'AkuafuLink';
 
 const Layout = ({
   children,
