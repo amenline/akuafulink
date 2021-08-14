@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Layout, { siteTitle } from '../components/Layout';
+import logo from '../public/logo.svg';
 import styles from '../styles/Home.module.css';
 import Button from '../components/Button';
 import bellPepper from '../public/images/bell-pepper.jpg';
@@ -8,110 +8,58 @@ import meal from '../public/meal.svg';
 
 const Home = () => {
   return (
-    <Layout home>
+    <>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Admin Login - AkuafuLink</title>
       </Head>
-      <section className={`${styles.hero}`}>
-        <div className='bg-black bg-opacity-50 sm:p-36 py-36 px-2'>
-          <div className='grid md:grid-cols-3 gap-2 place-content-center h-48'>
-            <div className='hidden sm:block'></div>
-            <h1 className='text-3xl text-center max-w-sm text-white font-semibold'>
-              Digitally transforming the food supply chain.
-            </h1>
-            <div className='hidden sm:block'></div>
-          </div>
-          <div className='grid md:grid-cols-3 gap-2 place-content-center h-16'>
-            <div className='hidden md:block'></div>
-            <div className='text-center max-w-sm'>
-              <Button
-                secondary
-                link='products'
-                text='Products and Services'
-                extraStyles='px-6 text-white'
-              />
+      <div className='bg-gray-50 w-full h-screen fixed'>
+        <div className={`flex justify-center py-16 px-5`}>
+          <section className='border border-gray-50 rounded-lg shadow-lg px-8 pt-16 pb-8 bg-white max-w-screen-xs w-full'>
+            <div className='text-center'>
+              <Image src={logo} alt='AkufuLink Logo'></Image>
             </div>
-            <div className='hidden md:block'></div>
-          </div>
-          <div className='grid md:grid-cols-3 gap-2 place-content-center h-16'>
-            <div className='hidden md:block'></div>
-            <div className='text-center max-w-sm'>
-              <Button
-                link='shop'
-                text='Start Ordering'
-                extraStyles='px-14 text-white'
-              />
+            <hr className='my-6' />
+            <form className='mb-14'>
+              <fieldset className='mb-4'>
+                <label htmlFor='email' className='text-xs block mb-2'>
+                  Email address
+                </label>
+                <input
+                  type='email'
+                  name='email'
+                  id='email'
+                  className='block border border-gray-200 w-full rounded-md p-2 text-sm'
+                />
+              </fieldset>
+              <fieldset className='mb-2'>
+                <label htmlFor='password' className='text-xs block mb-2'>
+                  Password
+                </label>
+                <input
+                  type='password'
+                  name='password'
+                  id='password'
+                  className='block border border-gray-200 w-full rounded-md p-2 text-sm'
+                />
+              </fieldset>
+              <div className='text-xs mb-6 underline'>
+                Forgot your password?
+              </div>
+              {/* <Button text='Login' extraStyles='w-full' /> */}
+              <a
+                className={`py-2 rounded-lg bg-primary-500 text-white hover:bg-primary-300`}
+              >
+                <button className='w-full'>Login</button>
+              </a>
+            </form>
+            <div className='text-xs text-center'>
+              {"Don't have an account?"}{' '}
+              <span className='text-primary-500 cursor-pointer'>Sign up</span>
             </div>
-            <div className='hidden md:block'></div>
-          </div>
+          </section>
         </div>
-      </section>
-      <section className={`${styles.about} p-20`}>
-        <div className='grid md:grid-cols-2 gap-8 place-content-center'>
-          <div className='grid md:grid-cols-3 grid-cols-1 gap-2'>
-            <div></div>
-            <div className={`${styles.basket}  md:col-start-2 md:col-span-2`}>
-              <Image src={bellPepper} alt='Image of green pepper in a basket' />
-            </div>
-          </div>
-          <div>
-            <h2 className='text-3xl text-primary-400 font-semibold mb-5'>
-              Giving value to the smallholder farmers
-            </h2>
-            <p className='mb-10'>
-              Akuafulink aims to provide smallholder farmers with a ready market
-              at fair market prices while supplying the needs of our customers
-            </p>
-            <div className='max-w-sm'>
-              <Button
-                secondary
-                link='about'
-                text='About AkuafuLink'
-                extraStyles='px-6 text-black'
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <svg
-        width='100%'
-        viewBox='0 0 1152 100'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <path
-          d='M308.534 73.177C364.214 67.7903 418.128 58.135 473.654 52.2789C552.749 43.9316 635.117 43.4274 714.086 52.0842C790.829 60.4764 870.403 80.9452 946.234 91.3443C1013.48 100.57 1086.9 104.369 1152 92.8421V0H0V58.6542C98.367 78.0517 205.069 83.0742 308.534 73.177Z'
-          fill='#EAE7E7'
-        />
-      </svg>
-      <section className={`${styles.order} bg-white p-30`}>
-        <div className='grid md:grid-cols-2 gap-8 place-content-center'>
-          <div className='grid md:grid-cols-4 gap-2 place-content-center'>
-            <div className='md:col-start-2 md:col-span-3'>
-              <h2 className='text-3xl text-primary-400 font-bold sm:mb-8 mb-16 pt-5 text-center'>
-                Place your order now
-              </h2>
-            </div>
-            <div className='md:col-start-2 md:col-span-3 text-center'>
-              <Button
-                link='login'
-                text='Login / Signup'
-                extraStyles='px-10 text-white'
-              />
-            </div>
-          </div>
-          <div className='grid md:grid-cols-3 grid-cols-1 gap-2'>
-            <div></div>
-            <div className={`${styles.basket}  md:col-start-1 md:col-span-2`}>
-              <Image
-                src={meal}
-                alt='An illustration of multiple ordered meals'
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-    </Layout>
+      </div>
+    </>
   );
 };
 
