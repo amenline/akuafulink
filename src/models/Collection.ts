@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import { ShopItemType } from '../Types';
 
-export interface ICollection extends mongoose.Document {
+export interface IMealBox extends mongoose.Document {
   name: string;
   contents: string[];
   price: number;
@@ -13,7 +13,7 @@ export interface ICollection extends mongoose.Document {
   date?: Date;
 }
 
-const CollectionSchema: Schema = new Schema(
+const mealBoxSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -43,7 +43,7 @@ const CollectionSchema: Schema = new Schema(
     type: {
       type: String,
       required: true,
-      default: ShopItemType.collection,
+      default: ShopItemType.mealBox,
     },
     date: {
       type: Date,
@@ -53,6 +53,6 @@ const CollectionSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-const Collection = mongoose.model<ICollection>('collection', CollectionSchema);
+const mealBox = mongoose.model<IMealBox>('mealBox', mealBoxSchema);
 
-export default Collection;
+export default mealBox;

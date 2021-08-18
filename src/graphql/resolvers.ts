@@ -11,10 +11,10 @@ const resolvers = {
   createCategory: {{ input }} => {
     return input;
   },
-  collections: () => {
-    return collections;
+  mealBoxes: () => {
+    return mealBoxes;
   },
-  createCollection: {{ input }} => {
+  createMealBox: {{ input }} => {
     return input;
   },
   commodities: () => {

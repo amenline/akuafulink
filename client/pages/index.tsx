@@ -1,10 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import logo from '../public/logo.svg';
-import styles from '../styles/Home.module.css';
-import Button from '../components/Button';
-import bellPepper from '../public/images/bell-pepper.jpg';
-import meal from '../public/meal.svg';
 
 const Home = () => {
   return (
