@@ -9,7 +9,8 @@ const userType = `
     password: String
     picture: String
     location: Location
-    account: Account
+    account: AccountType
+    profile: String
     date: String
   }
 
@@ -21,13 +22,21 @@ const userType = `
     password: String
     picture: String
     location: LocationInput
-    account: Account
+    account: AccountType
+    profile: String
     date: String
   }
 `;
 
-const profileType = `
-  type Profile {
+const customerType = `
+  type Customer {
+    cart: [String]
+    purchased: [String]
+    saved: [String]
+    Viewed: [String]
+  }
+
+  input CustomerInput {
     cart: [String]
     purchased: [String]
     saved: [String]
@@ -35,8 +44,41 @@ const profileType = `
   }
 `;
 
+const adminType = `
+  type Admin {
+    added: [String]
+  }
+
+  input AdminInput {
+    added: [String]
+  }
+`;
+
+const locationType = `
+  type Location {
+    country: String
+    region: String
+    town: String
+    gps: String
+  }
+
+  input LocationInput {
+    country: String
+    region: String
+    town: String
+    gps: String
+  }
+`;
+
+const accountEnum = `
+  enum AccountType {
+    CUSTOMER
+    ADMIN
+  }
+`;
+
 const commodityType = `
-  type Commpdity {
+  type Commodity {
     _id: ID!
     name: String!
     variety: String
@@ -47,6 +89,22 @@ const commodityType = `
     description: String
     categories: [Category]!
     tags: [String]
+    author: String!
+    date: String
+  }
+
+  type CommodityInput {
+    _id: ID!
+    name: String!
+    variety: [String]
+    price: Float!
+    measure: String
+    stock: Int
+    pictures: [String]
+    categories: [String]!
+    description: String!!
+    type: String!
+    author: String!
     date: String
   }
 `;
@@ -62,12 +120,34 @@ const mealboxType = `
     description: String!
     tags: [String]
     meal: [String]!
+    author: String
+    date: String
+  }
+
+  input MealboxInput  {
+    _id: ID!
+    name: String!
+    contents: [String]!
+    price: Float!
+    stock: Int
+    pictures: [String]
+    description: String!
+    tags: [String]
+    meal: [String]!
+    author: String
     date: String
   }
 `;
 
-const CategoryType = `
+const categoryType = `
   type Category {
+    _id: ID!
+    name: String!
+    description: String!
+    date: String
+  }
+
+  input CategoryInput {
     _id: ID!
     name: String!
     description: String!
@@ -85,73 +165,29 @@ const query = `
   }
 `;
 
+const mutation = `
+type Mutation {
+  createUser(input: UserInput): User
+  createCategory(input: CategoryInput): Category
+  createMealbox(input: MealboxInput): Mealbox
+  createCommodity(input: CommodityInput): Commodity
+}
+`;
+
 const schema = buildSchema(`
   ${userType}
-  ${profileType}
-  ${CategoryType}
+  ${customerType}
+  ${adminType}
+  ${categoryType}
   ${commodityType}
   ${mealboxType}
   ${query}
+  ${accountEnum}
+  ${locationType}
+  ${mutation}
 
-  enum Account {
-    CUSTOMER
-    ADMIN
-  }
-
-  type Location {
-    country: String
-    region: String
-    town: String
-    gps: String
-  }
-
-  input LocationInput {
-    country: String
-    region: String
-    town: String
-    gps: String
-  }
-
-  input CategoryInput {
-    _id: ID!
-    name: String!
-    description: String!
-    date: String
-  }
-
-  input MealboxInput  {
-    _id: ID!
-    name: String!
-    contents: [String]!
-    price: Float!
-    measure: String
-    stock: Int
-    pictures: [String]
-    description: String!
-    type: String!
-    date: String
-  }
-
-  type CommpdityInput {
-    _id: ID!
-    name: String!
-    variety: [String]
-    price: Float!
-    measure: String
-    stock: Int
-    pictures: [String]
-    categories: [String]!
-    description: String!!
-    type: String!
-    date: String
-  }
-
-  type Mutation {
-    createUser(input: UserInput): User
-    createCategory(input: CategoryInput): Category
-    createMealbox(input: MealboxInput): Mealbox
-    createCommodity(input: CommodityInput): Commodity
-  }
+  union Profile = Customer | Admin
+  union ProfileInput = CustomerInput | AdminInput
 `);
 
 export default schema;

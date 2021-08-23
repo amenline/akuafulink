@@ -1,13 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
+import { AccountType, Location } from '../Types';
 
 export interface IUser extends mongoose.Document {
   name: string;
+  mobile: string;
   email: string;
   password: string;
-  mobile: string;
   picture?: string;
-  cart?: string[];
-  shopped?: string[];
+  location: Location;
+  account: AccountType;
+  profile: IProfile;
   date?: Date;
 }
 
@@ -33,16 +35,10 @@ const UserSchema: Schema = new Schema(
     picture: {
       type: String,
     },
-    cart: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-      },
-    ],
-    shopped: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-      },
-    ],
+    profile: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Profile,
+    },
     date: {
       type: Date,
       default: Date.now,
